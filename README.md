@@ -32,13 +32,7 @@ nl2stata_dlg.ado
 pip install openai
 
 🚀 快速上手
-命令行模式
-在 Stata 命令窗口输入：
 
-nl2stata "使用 auto 数据，做 price 的描述统计，并用 mpg 预测 price"
-程序会显示翻译后的命令并询问是否执行。若要直接执行，可加 EXECute 选项：
-
-nl2stata "summarize price; regress price mpg", execute
 对话框模式
 直接输入 db nl2stata 启动图形界面，在输入框中写需求点击提交即可。
 
