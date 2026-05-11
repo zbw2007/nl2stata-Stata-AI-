@@ -1,0 +1,36 @@
+VERSION 16.0
+
+POSITION . . 520 420
+
+DIALOG main, label("nl2stata - 自然语言转 Stata 命令")
+BEGIN
+    TEXT     tx_prompt     10  10   500  .,  label("请输入你想做的操作（用自然语言）：")
+    EDIT     ed_prompt     10  +15  500  80 ,  option(NLPrompt)
+    TEXT     tx_model      10  +20  80   .,  label("模型：")
+    COMBOBOX cb_model      90  -15  130  .,  dropdownlist  contents(model_list)  option(Model)
+    TEXT     tx_apikey     235 -15  70   .,  label("API Key：")
+    EDIT     ed_apikey     305 -15  205  .,  option(ApiKey)
+    TEXT     tx_result     10  +25  500  .,  label("生成的 Stata 命令：")
+    EDIT     ed_result     10  +10  500  90
+END
+
+LIST model_list
+BEGIN
+    "deepseek-v4-pro"
+    "deepseek-chat"
+    "deepseek-reasoner"
+END
+
+SUBMIT   sub_translate,  label("翻译(&T)")
+RESET    res_clear,      label("清空(&C)")
+CANCEL   can_cancel,     label("取消(&Q)")
+
+PROGRAM command
+BEGIN
+    put "nl2stata_dlg "
+    put main.ed_prompt
+    put " "
+    put main.cb_model
+    put " "
+    put main.ed_apikey
+END
